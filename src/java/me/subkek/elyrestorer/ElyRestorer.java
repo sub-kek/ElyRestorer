@@ -12,6 +12,7 @@ public class ElyRestorer extends JavaPlugin {
     private static ElyRestorer instance;
     public ArrayList<Task> tasks = new ArrayList<>();
     public Logger LOGGER = getLogger();
+    public SkinGetter skinGetter;
 
 
     public static ElyRestorer getInstance() {
@@ -21,6 +22,8 @@ public class ElyRestorer extends JavaPlugin {
     @Override
     public void onEnable() {
         instance = this;
+
+        skinGetter = new SkinGetter();
 
         getServer().getPluginManager().registerEvents(new ServerHandler(), this);
         getServer().getPluginManager().registerEvents(new PlayerHandler(), this);

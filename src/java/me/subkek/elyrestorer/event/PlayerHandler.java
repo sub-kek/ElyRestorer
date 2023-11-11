@@ -8,8 +8,8 @@ import org.bukkit.event.player.PlayerJoinEvent;
 public class PlayerHandler implements Listener {
     private final ElyRestorer plugin = ElyRestorer.getInstance();
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onPlayerJoin(PlayerJoinEvent event) {
-
+        plugin.skinGetter.addToQueue(event.getPlayer().getName(), event.getPlayer().getName());
     }
 }

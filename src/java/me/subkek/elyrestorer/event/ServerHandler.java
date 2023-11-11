@@ -10,7 +10,7 @@ import org.bukkit.event.Listener;
 public class ServerHandler implements Listener {
     private final ElyRestorer plugin = ElyRestorer.getInstance();
 
-    @EventHandler
+    @EventHandler(ignoreCancelled = true)
     public void onServerTickStart(ServerTickStartEvent event) {
         if (plugin.tasks.isEmpty()) return;
 
