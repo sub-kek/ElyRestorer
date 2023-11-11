@@ -14,7 +14,7 @@ public class ServerHandler implements Listener {
     public void onServerTickStart(ServerTickStartEvent event) {
         if (plugin.tasks.isEmpty()) return;
 
-        for (int i = 0; i < plugin.tasks.size() - 1; i++) {
+        for (int i = 0; i < plugin.tasks.size(); i++) {
             Task task = plugin.tasks.get(i);
             task.execute();
             plugin.LOGGER.info(Formatter.format("Successfully executed task #{0}", String.valueOf(task.getTaskId())));
