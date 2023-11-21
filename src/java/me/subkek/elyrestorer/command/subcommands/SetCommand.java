@@ -44,7 +44,7 @@ public class SetCommand extends SubCommand {
         }
 
         try {
-            if (args.length >= 3 && sender.hasPermission("elyrestorer.set.others")) {
+            if (args.length >= 3 & sender.hasPermission("elyrestorer.set.others")) {
                 plugin.jsonUtils.put(args[1], args[2]);
                 plugin.jsonUtils.saveJson();
 

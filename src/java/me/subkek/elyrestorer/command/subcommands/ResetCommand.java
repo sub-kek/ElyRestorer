@@ -42,7 +42,7 @@ public class ResetCommand extends SubCommand {
             return;
         }
         try {
-            if (args.length >= 2 && sender.hasPermission("elyrestorer.reset.others")) {
+            if (args.length >= 2 & sender.hasPermission("elyrestorer.reset.others")) {
                 plugin.jsonUtils.put(args[1], args[1]);
                 plugin.jsonUtils.saveJson();
 

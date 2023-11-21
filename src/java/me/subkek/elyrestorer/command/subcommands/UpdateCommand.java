@@ -1,7 +1,6 @@
 package me.subkek.elyrestorer.command.subcommands;
 
 import me.subkek.elyrestorer.ElyRestorer;
-import me.subkek.elyrestorer.task.ApplySkinTask;
 import me.subkek.elyrestorer.task.GetSkinTask;
 import me.subkek.elyrestorer.type.SubCommand;
 import me.subkek.elyrestorer.utils.Formatter;
@@ -48,7 +47,7 @@ public class UpdateCommand extends SubCommand {
         }
 
         try {
-            if (args.length >= 2 && sender.hasPermission("elyrestorer.update.others")) {
+            if (args.length >= 2 & sender.hasPermission("elyrestorer.update.others")) {
                 plugin.jsonUtils.put(args[1], args[1]);
                 plugin.jsonUtils.saveJson();
 

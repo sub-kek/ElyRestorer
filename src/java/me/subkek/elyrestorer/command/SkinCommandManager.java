@@ -37,6 +37,7 @@ public class SkinCommandManager implements CommandExecutor, TabCompleter {
         } else {
             sender.sendMessage(plugin.language.get("help-header"));
             for (SubCommand subCommand : subCommands) {
+                if (!subCommand.hasPermissions(sender)) continue;
                 sender.sendMessage(Formatter.format(plugin.language.get("help-command"), subCommand.getSyntax(), subCommand.getDescription()));
             }
             sender.sendMessage(plugin.language.get("help-footer"));
