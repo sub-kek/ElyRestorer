@@ -45,7 +45,7 @@ public class SetCommand extends SubCommand {
 
         try {
             if (args.length >= 3 && sender.hasPermission("elyrestorer.set.others")) {
-                plugin.jsonUtils.put(args[2], args[1]);
+                plugin.jsonUtils.put(args[1], args[2]);
                 plugin.jsonUtils.saveJson();
 
                 plugin.asyncTasks.add(new GetSkinTask(args[1], args[2], true, (Player) sender));
