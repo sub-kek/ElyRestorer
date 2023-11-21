@@ -6,6 +6,7 @@ import me.subkek.elyrestorer.ElyRestorer;
 import me.subkek.elyrestorer.type.SkinProperty;
 import me.subkek.elyrestorer.type.TaksType;
 import me.subkek.elyrestorer.type.Task;
+import me.subkek.elyrestorer.utils.Formatter;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -13,11 +14,15 @@ public class ApplySkinTask extends Task {
     private final ElyRestorer plugin = ElyRestorer.getInstance();
     private final SkinProperty skinProperty;
     private final String playerName;
+    private boolean needCallback;
+    private Player callbackTo;
 
-    public ApplySkinTask(String playerName, SkinProperty skinProperty) {
+    public ApplySkinTask(String playerName, SkinProperty skinProperty, boolean needCallback, Player callbackTo) {
         super(TaksType.APPLY_SKIN);
         this.skinProperty = skinProperty;
         this.playerName = playerName;
+        this.needCallback = needCallback;
+        this.callbackTo = callbackTo;
     }
 
     @Override
@@ -35,6 +40,12 @@ public class ApplySkinTask extends Task {
 
         hidePlayer(player);
         showPlayer(player);
+
+        float exp = player.getExp();
+        player.setExp(0);
+        player.setExp(exp);
+
+        if (needCallback) callbackTo.sendMessage(Formatter.format(plugin.language.get("skin-applyed"), true));
     }
 
     private void hidePlayer(Player player) {

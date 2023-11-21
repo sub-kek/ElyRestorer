@@ -4,5 +4,33 @@ main: me.subkek.elyrestorer.ElyRestorer
 authors: ['sub-kek']
 api-version: 1.16
 load: POSTWORLD
-description: 'The simple skin system plugin uses ElyBy. Written by subkek.'
+description: 'The simple skin system plugin uses ElyBy. Written by sub-kek.'
 website: 'https://github.com/sub-kek'
+commands:
+  elyrestorer:
+    aliases: ['skin']
+    description: 'Plugin command ;)'
+permissions:
+  elyrestorer.*:
+    children:
+      elyrestorer.use: true
+      elyrestorer.set: true
+      elyrestorer.update: true
+      elyrestorer.reset: true
+      elyrestorer.set.others: true
+      elyrestorer.reset.others: true
+      elyrestorer.update.others: true
+  elyrestorer.use:
+    default: op
+  elyrestorer.set:
+    default: op
+  elyrestorer.update:
+    default: op
+  elyrestorer.reset:
+    default: op
+  elyrestorer.set.others:
+    default: op
+  elyrestorer.reset.others:
+    default: op
+  elyrestorer.update.others:
+    default: op

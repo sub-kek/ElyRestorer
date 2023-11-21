@@ -1,10 +1,9 @@
 package me.subkek.elyrestorer.type;
 
-import java.util.Objects;
-
 public enum TaksType {
     APPLY_SKIN (0),
-    GET_SKIN (1);
+    GET_SKIN (1),
+    SEND_MESSAGE (2);
 
     private final int id;
 

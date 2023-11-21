@@ -1,8 +1,11 @@
-package me.subkek.elyrestorer;
+package me.subkek.elyrestorer.task;
 
-import me.subkek.elyrestorer.task.ApplySkinTask;
+import me.subkek.elyrestorer.ElyRestorer;
+import me.subkek.elyrestorer.type.AsyncTask;
 import me.subkek.elyrestorer.type.SkinProperty;
+import me.subkek.elyrestorer.type.TaksType;
 import me.subkek.elyrestorer.utils.Formatter;
+import org.bukkit.entity.Player;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -16,12 +19,30 @@ import java.net.URLConnection;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-public class SkinGetter {
+public class GetSkinTask extends AsyncTask {
     private final ElyRestorer plugin = ElyRestorer.getInstance();
 
-    public void addToQueue(String playerName, String skinName) {
+    private String playerName, skinName;
+    private boolean needCallback;
+    private Player callbackTo;
+
+    public GetSkinTask(String playerName, String skinName, boolean needCallback, Player callbackTo) {
+        super(TaksType.GET_SKIN);
+        this.playerName = playerName;
+        this.skinName = skinName;
+        this.needCallback = needCallback;
+        this.callbackTo = callbackTo;
+    }
+
+    @Override
+    public void execute() {
         Runnable runnable = () -> {
             JSONObject jsonObject = getJSONResponse(Formatter.format("http://skinsystem.ely.by/textures/signed/{0}?proxy=true", skinName));
+
+            if (jsonObject == null) {
+                if (needCallback) plugin.tasks.add(new SendMessageTask(callbackTo, Formatter.format(plugin.language.get("skin-not-found"), true)));
+                return;
+            }
 
             JSONObject properties = (JSONObject) ((JSONArray) jsonObject.get("properties")).get(0);
 
@@ -30,11 +51,10 @@ public class SkinGetter {
 
             SkinProperty skinProperty = new SkinProperty(value, signature);
 
-            plugin.tasks.add(new ApplySkinTask(playerName, skinProperty));
+            plugin.tasks.add(new ApplySkinTask(playerName, skinProperty, needCallback, callbackTo));
         };
 
-        Thread thread = new Thread(runnable);
-        thread.start();
+        start(runnable);
     }
 
     private JSONObject getJSONResponse(String link) {
