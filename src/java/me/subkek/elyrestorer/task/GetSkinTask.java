@@ -5,6 +5,7 @@ import me.subkek.elyrestorer.type.AsyncTask;
 import me.subkek.elyrestorer.type.SkinProperty;
 import me.subkek.elyrestorer.type.TaksType;
 import me.subkek.elyrestorer.utils.Formatter;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -24,9 +25,9 @@ public class GetSkinTask extends AsyncTask {
 
     private String playerName, skinName;
     private boolean needCallback;
-    private Player callbackTo;
+    private CommandSender callbackTo;
 
-    public GetSkinTask(String playerName, String skinName, boolean needCallback, Player callbackTo) {
+    public GetSkinTask(String playerName, String skinName, boolean needCallback, CommandSender callbackTo) {
         super(TaksType.GET_SKIN);
         this.playerName = playerName;
         this.skinName = skinName;

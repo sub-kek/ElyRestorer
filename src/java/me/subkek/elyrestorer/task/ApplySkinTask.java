@@ -8,6 +8,7 @@ import me.subkek.elyrestorer.type.TaksType;
 import me.subkek.elyrestorer.type.Task;
 import me.subkek.elyrestorer.utils.Formatter;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 public class ApplySkinTask extends Task {
@@ -15,9 +16,9 @@ public class ApplySkinTask extends Task {
     private final SkinProperty skinProperty;
     private final String playerName;
     private boolean needCallback;
-    private Player callbackTo;
+    private CommandSender callbackTo;
 
-    public ApplySkinTask(String playerName, SkinProperty skinProperty, boolean needCallback, Player callbackTo) {
+    public ApplySkinTask(String playerName, SkinProperty skinProperty, boolean needCallback, CommandSender callbackTo) {
         super(TaksType.APPLY_SKIN);
         this.skinProperty = skinProperty;
         this.playerName = playerName;

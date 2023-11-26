@@ -48,7 +48,7 @@ public class SetCommand extends SubCommand {
                 plugin.jsonUtils.put(args[1], args[2]);
                 plugin.jsonUtils.saveJson();
 
-                plugin.asyncTasks.add(new GetSkinTask(args[1], args[2], true, (Player) sender));
+                plugin.asyncTasks.add(new GetSkinTask(args[1], args[2], true, sender));
             } else {
                 if (!canExecute(sender)) {
                     sender.sendMessage(Formatter.format(plugin.language.get("only-player-error"), true));
@@ -58,7 +58,7 @@ public class SetCommand extends SubCommand {
                 plugin.jsonUtils.put(sender.getName(), args[1]);
                 plugin.jsonUtils.saveJson();
 
-                plugin.asyncTasks.add(new GetSkinTask(sender.getName(), args[1], true, (Player) sender));
+                plugin.asyncTasks.add(new GetSkinTask(sender.getName(), args[1], true, sender));
             }
         } catch (Exception ignored) {
             sender.sendMessage(Formatter.format(plugin.language.get("invalid-arguments-error"), true, getSyntax()));

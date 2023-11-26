@@ -2,6 +2,7 @@ package me.subkek.elyrestorer;
 
 import me.subkek.elyrestorer.command.SkinCommandManager;
 import me.subkek.elyrestorer.event.PlayerHandler;
+import me.subkek.elyrestorer.event.SecretFeatureHandler;
 import me.subkek.elyrestorer.event.ServerHandler;
 import me.subkek.elyrestorer.json.JsonUtils;
 import me.subkek.elyrestorer.lang.FileLanguage;
@@ -16,9 +17,9 @@ public class ElyRestorer extends JavaPlugin {
     private static ElyRestorer instance;
     public ArrayList<Task> tasks = new ArrayList<>();
     public ArrayList<AsyncTask> asyncTasks = new ArrayList<>();
-    public Logger LOGGER = getLogger();
     public FileLanguage language;
     public JsonUtils jsonUtils;
+    public Logger LOGGER = getLogger();
 
     public static ElyRestorer getInstance() {
         return instance;

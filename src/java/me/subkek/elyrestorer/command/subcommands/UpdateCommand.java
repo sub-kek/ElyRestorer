@@ -48,14 +48,14 @@ public class UpdateCommand extends SubCommand {
 
         try {
             if (args.length >= 2 & sender.hasPermission("elyrestorer.update.others")) {
-                plugin.asyncTasks.add(new GetSkinTask(args[1], plugin.jsonUtils.getString(args[1]), true, (Player) sender));
+                plugin.asyncTasks.add(new GetSkinTask(args[1], plugin.jsonUtils.getString(args[1]), true, sender));
             } else {
                 if (!canExecute(sender)) {
                     sender.sendMessage(Formatter.format(plugin.language.get("only-player-error"), true));
                     return;
                 }
 
-                plugin.asyncTasks.add(new GetSkinTask(sender.getName(), plugin.jsonUtils.getString(sender.getName()), true, (Player) sender));
+                plugin.asyncTasks.add(new GetSkinTask(sender.getName(), plugin.jsonUtils.getString(sender.getName()), true, sender));
             }
         } catch (Exception ignored) {
             sender.sendMessage(Formatter.format(plugin.language.get("invalid-arguments-error"), true, getSyntax()));

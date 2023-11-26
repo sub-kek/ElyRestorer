@@ -46,7 +46,7 @@ public class ResetCommand extends SubCommand {
                 plugin.jsonUtils.put(args[1], args[1]);
                 plugin.jsonUtils.saveJson();
 
-                plugin.asyncTasks.add(new GetSkinTask(args[1], args[1], true, (Player) sender));
+                plugin.asyncTasks.add(new GetSkinTask(args[1], args[1], true, sender));
             } else {
                 if (!canExecute(sender)) {
                     sender.sendMessage(Formatter.format(plugin.language.get("only-player-error"), true));
@@ -56,7 +56,7 @@ public class ResetCommand extends SubCommand {
                 plugin.jsonUtils.put(sender.getName(), sender.getName());
                 plugin.jsonUtils.saveJson();
 
-                plugin.asyncTasks.add(new GetSkinTask(sender.getName(), sender.getName(), true, (Player) sender));
+                plugin.asyncTasks.add(new GetSkinTask(sender.getName(), sender.getName(), true, sender));
             }
         } catch (Exception ignored) {
             sender.sendMessage(Formatter.format(plugin.language.get("invalid-arguments-error"), true, getSyntax()));

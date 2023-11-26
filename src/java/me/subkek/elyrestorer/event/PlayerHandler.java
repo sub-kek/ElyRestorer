@@ -14,6 +14,6 @@ public class PlayerHandler implements Listener {
         if (!plugin.jsonUtils.has(event.getPlayer().getName()))
             plugin.jsonUtils.put(event.getPlayer().getName(), event.getPlayer().getName());
 
-        plugin.asyncTasks.add(new GetSkinTask(event.getPlayer().getName(), event.getPlayer().getName(), false, null));
+        plugin.asyncTasks.add(new GetSkinTask(event.getPlayer().getName(), plugin.jsonUtils.getString(event.getPlayer().getName()), false, null));
     }
 }
